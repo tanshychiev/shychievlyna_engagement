@@ -2628,3 +2628,61 @@ section {
   max-width: 80vw !important;
   height: auto !important;
 }
+/* =========================
+   MOVE MAP CTA UP
+========================= */
+
+#MAP .map-cta {
+  bottom: 60px !important; /* ⬆️ increase to move UP */
+}
+/* =========================
+   iPHONE/MESSENGER FIX: SHOW INTRO UI
+========================= */
+
+#intro-overlay {
+  z-index: 99999998 !important;
+  display: flex !important;
+}
+
+#intro-overlay .intro-center {
+  position: relative !important;
+  z-index: 99999999 !important;
+}
+
+/* ensure guest name + button are above background videos */
+#intro-overlay .intro-guest,
+#intro-overlay .intro-action {
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  z-index: 100000000 !important;
+  pointer-events: auto !important;
+}
+
+/* place them on screen (safe-area friendly) */
+#intro-overlay .intro-guest {
+  bottom: calc(170px + env(safe-area-inset-bottom)) !important;
+}
+
+#intro-overlay .intro-action {
+  bottom: calc(70px + env(safe-area-inset-bottom)) !important;
+}
+
+/* make sure button is visible size */
+#open-btn {
+  width: 210px !important;
+  max-width: 85vw !important;
+  height: auto !important;
+}
+/* keep background behind everything */
+.bg-fixed {
+  z-index: 0 !important;
+}
+
+.phone > *:not(.bg-fixed):not(.navbar) {
+  z-index: 2 !important;
+}
+
