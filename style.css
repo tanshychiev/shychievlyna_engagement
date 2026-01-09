@@ -2636,53 +2636,37 @@ section {
   bottom: 60px !important; /* ⬆️ increase to move UP */
 }
 /* =========================
-   iPHONE/MESSENGER FIX: SHOW INTRO UI
+/* =========================
+   INTRO – FIRST PAGE ONLY (SAFE FOR iOS)
 ========================= */
 
+/* intro overlay always above backgrounds */
 #intro-overlay {
-  z-index: 99999998 !important;
-  display: flex !important;
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
 }
 
-#intro-overlay .intro-center {
-  position: relative !important;
-  z-index: 99999999 !important;
-}
-
-/* ensure guest name + button are above background videos */
+/* guest name + open button on top */
 #intro-overlay .intro-guest,
 #intro-overlay .intro-action {
-  position: fixed !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  z-index: 100000000 !important;
-  pointer-events: auto !important;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100001;
 }
 
-/* place them on screen (safe-area friendly) */
+/* positions (adjust if needed) */
 #intro-overlay .intro-guest {
-  bottom: calc(170px + env(safe-area-inset-bottom)) !important;
+  bottom: 180px;
 }
 
 #intro-overlay .intro-action {
-  bottom: calc(70px + env(safe-area-inset-bottom)) !important;
+  bottom: 80px;
 }
 
-/* make sure button is visible size */
-#open-btn {
-  width: 210px !important;
-  max-width: 85vw !important;
-  height: auto !important;
-}
-/* keep background behind everything */
+/* background videos stay behind */
 .bg-fixed {
-  z-index: 0 !important;
-}
-
-.phone > *:not(.bg-fixed):not(.navbar) {
-  z-index: 2 !important;
+  z-index: 0;
 }
 
