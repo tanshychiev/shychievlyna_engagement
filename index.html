@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chiev-Lina Engagement</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khmer:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Romdoul&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- TOP CONTROLS -->
+    <div class="top-controls" id="top-controls">
+      <button
+        id="mute-btn"
+        class="mute-btn"
+        type="button"
+        aria-label="Mute/Unmute"
+      >
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+    </div>
+
+    <div class="page">
+      <div class="phone">
+        <!-- BACKGROUNDS -->
+        <video class="bg-fixed bg-1 active" autoplay loop muted playsinline>
+          <source src="img/bgpart1.mp4" type="video/mp4" />
+        </video>
+
+        <video class="bg-fixed bg-2" autoplay loop muted playsinline>
+          <source src="img/bg2.mp4" type="video/mp4" />
+        </video>
+
+        <!-- INTRO (ONLY ONCE) -->
+        <div id="intro-overlay" class="intro-overlay">
+          <div class="intro-center">
+            <div class="intro-guest">
+              <span id="guest-name"></span>
+            </div>
+
+            <div class="intro-action">
+              <img
+                id="open-btn"
+                class="open-btn"
+                src="img/Click_here.png"
+                alt="Open Invitation"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- VIDEO -->
+        <div id="video-overlay" class="video-overlay">
+          <video
+            id="intro-video"
+            class="intro-video"
+            playsinline
+            preload="auto"
+            muted
+          >
+            <source src="img/videoti1.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <!-- MUSIC -->
+        <audio id="bg-music" loop preload="auto" playsinline>
+          <source src="img/0108update.MP3" type="audio/MP3" />
+        </audio>
+
+        <!-- SITE -->
+        <div id="site" class="site-hidden">
+          <section id="home" class="content">
+            <img src="img/firstpage.png" alt="nameti1" />
+            <img src="img/english.png" alt="nameti1" />
+            <img src="img/agenda.png" alt="ag" />
+          </section>
+
+          <section id="calendar" class="content">
+            <h2>Engagement Countdown</h2>
+            <h2>រាប់ថយក្រោយ</h2>
+
+            <div class="countdown">
+              <div class="time-box">
+                <span id="cd-days">00</span>
+                <small>ថ្ងៃ</small>
+              </div>
+              <div class="time-box">
+                <span id="cd-hours">00</span>
+                <small>ម៉ោង</small>
+              </div>
+              <div class="time-box">
+                <span id="cd-mins">00</span>
+                <small>នាទី</small>
+              </div>
+              <div class="time-box">
+                <span id="cd-secs">00</span>
+                <small>វិនាទី</small>
+              </div>
+            </div>
+
+            <div class="event-date">
+              <span class="date-text">30 · 01 · 2026</span>
+            </div>
+
+            <!-- Save the Date -->
+            <div class="save-date">
+              <a
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Engagement%20Ceremony%20-%20Chiev%20%26%20Lina&dates=20260130T000000Z/20260130T060000Z&details=We%20warmly%20invite%20you%20to%20our%20engagement%20ceremony&location=The%20Premier%20Palace%20Cambodia"
+                target="_blank"
+                rel="noopener"
+              >
+                <img src="img/save_date.png" alt="Save the Date" />
+              </a>
+            </div>
+          </section>
+
+          <section id="dress-color" class="content color-section">
+            <h2>Dress Color Guide</h2>
+
+            <div class="circle-row-title">🔵 Blue (ពណ៍ទឹកប៊ិច)</div>
+            <div class="circle-row">
+              <div
+                class="color-circle blue-1"
+                title="Midnight Blue #13256b"
+              ></div>
+              <div class="color-circle blue-2" title="Deep Navy #1B2A4E"></div>
+              <div class="color-circle blue-3" title="Royal Blue #1F3C88"></div>
+              <div
+                class="color-circle blue-4"
+                title="Sapphire Blue #0F52BA"
+              ></div>
+              <div
+                class="color-circle blue-5"
+                title="Cobalt Blue #0047AB"
+              ></div>
+              <div
+                class="color-circle blue-6"
+                title="Bright Royal #2A4DBF"
+              ></div>
+            </div>
+
+            <div class="circle-row-title">🟡 Gold (ពណ៍ទឹកមាស)</div>
+            <div class="circle-row">
+              <div
+                class="color-circle gold-1"
+                title="Dark Antique #9C7A00"
+              ></div>
+              <div
+                class="color-circle gold-2"
+                title="Antique Gold #C9A227"
+              ></div>
+              <div class="color-circle gold-3" title="Soft Gold #D4AF37"></div>
+              <div
+                class="color-circle gold-4"
+                title="Golden Sand #E0B84C"
+              ></div>
+              <div class="color-circle gold-5" title="Champagne #E6C36A"></div>
+              <div class="color-circle gold-6" title="Light Gold #FFD966"></div>
+            </div>
+          </section>
+
+          <section id="MAP" class="content">
+            <h2>ទីតាំងកម្មវីធី | LOCATION</h2>
+
+            <a
+              class="map-link"
+              href="https://maps.app.goo.gl/ra7tR7c75GyTWU6w8"
+              target="_blank"
+              rel="noopener"
+            >
+              <img class="map-image" src="img/location.png" alt="Map" />
+            </a>
+
+            <a
+              class="map-cta"
+              href="https://maps.app.goo.gl/ra7tR7c75GyTWU6w8"
+              target="_blank"
+              rel="noopener"
+            >
+              <img src="img/viewlocation.png" alt="Click here to show map" />
+            </a>
+          </section>
+
+          <section id="gallery" class="content">
+            <h2>កម្រងរូបភាព | Gallery</h2>
+
+            <div class="polaroid-stack" id="polaroidStack">
+              <div class="polaroid p1"><img alt="photo 1" /></div>
+              <div class="polaroid p2"><img alt="photo 2" /></div>
+              <div class="polaroid p3"><img alt="photo 3" /></div>
+            </div>
+
+            <p class="gallery-hint">ចុចលើរូបភាព ដើម្បីមើលរូបបន្ទាប់ 💙</p>
+            <p class="gallery-hint">
+              កុំភ្លេចចុចមើលផង អត់ចុចមើលម្ខាស់រូបអន់ចិត្ត🥹🥹
+            </p>
+          </section>
+
+          <section id="sms" class="comment-section">
+            <h3>សារជូនពរ 💌</h3>
+            <input id="c-name" placeholder="ឈ្មោះរបស់អ្នក" />
+            <textarea id="c-text" placeholder="សរសេរពាក្យជូនពរ..."></textarea>
+            <button id="c-send" type="button">ផ្ញើសារ</button>
+            <div class="lux-divider"></div>
+            <div id="c-list"></div>
+          </section>
+
+          <div id="thank-you-popup" class="thank-you-popup">
+            <div class="thank-you-box">💖 Thank you 💖</div>
+          </div>
+
+          <nav class="navbar">
+            <ul class="navlist">
+              <li class="nav-link">
+                <a href="#home"><i class="fa-solid fa-house"></i></a>
+              </li>
+              <li class="nav-link">
+                <a href="#calendar"
+                  ><i class="fa-regular fa-calendar-days"></i
+                ></a>
+              </li>
+              <li class="nav-link">
+                <a href="#MAP"><i class="fa-solid fa-map-location-dot"></i></a>
+              </li>
+              <li class="nav-link">
+                <a href="#gallery"><i class="fa-solid fa-image"></i></a>
+              </li>
+              <li class="nav-link">
+                <a href="#sms"><i class="fa-solid fa-message"></i></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div id="flowers"></div>
+      </div>
+    </div>
+
+    <script src="java.js"></script>
+    <script type="module" src="comments.js"></script>
+  </body>
+</html>
