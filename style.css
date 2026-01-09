@@ -2674,11 +2674,11 @@ section {
 }
 /* ✅ MOVE GUEST NAME + OPEN BUTTON DOWN */
 #intro-overlay .intro-guest {
-  bottom: 130px !important; /* increase = move DOWN, decrease = move UP */
+  bottom: 150px !important; /* increase = move DOWN, decrease = move UP */
 }
 
 #intro-overlay .intro-action {
-  bottom: 30px !important; /* increase = move DOWN, decrease = move UP */
+  bottom: 50px !important; /* increase = move DOWN, decrease = move UP */
 }
 /* ✅ Make "Click to Open" slightly smaller */
 /* 🔽 FORCE "CLICK TO OPEN" SMALLER */
@@ -2687,6 +2687,7 @@ section {
   max-width: 60% !important;
   height: auto !important;
 }
+
 
 
 
