@@ -1,5 +1,3 @@
-// comments.js  (MUST be loaded as type="module" in HTML)
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import {
   getFirestore,
@@ -38,78 +36,90 @@ if (!nameEl || !textEl || !sendBtn || !listEl) {
     "❌ Comment elements not found. Add comment section HTML first."
   );
 } else {
-  // ✅ Thank you popup function (move ABOVE click is fine too)
+  // ✅ Thank you popup
   function showThankYou() {
     const popup = document.getElementById("thank-you-popup");
-    if (!popup) return;
+    if (!popup) {
+      console.warn("❌ thank-you-popup not found");
+      return;
+    }
 
     popup.classList.add("show");
-
-    setTimeout(() => {
-      popup.classList.remove("show");
-    }, 1800);
+    setTimeout(() => popup.classList.remove("show"), 1800);
   }
 
-  // ✅ Send comment
+  // ✅ SEND comment (ONLY when button clicked)
   sendBtn.addEventListener("click", async () => {
     const name = (nameEl.value || "").trim();
     const text = (textEl.value || "").trim();
-    if (!name || !text) return;
 
-    const params = new URLSearchParams(window.location.search);
-    const guest = params.get("guest")
-      ? decodeURIComponent(params.get("guest"))
-      : "";
+    if (!name || !text) {
+      alert("Please enter name and message");
+      return;
+    }
 
-    await addDoc(collection(db, "comments"), {
-      name,
-      text,
-      guest,
-      createdAt: serverTimestamp(),
-    });
+    try {
+      sendBtn.disabled = true;
 
-    textEl.value = "";
+      const params = new URLSearchParams(window.location.search);
+      const guest = params.get("guest")
+        ? decodeURIComponent(params.get("guest"))
+        : "";
 
-    // ✅ SHOW POPUP
-    showThankYou();
+      await addDoc(collection(db, "comments"), {
+        name,
+        text,
+        guest,
+        createdAt: serverTimestamp(),
+      });
+
+      textEl.value = "";
+      showThankYou();
+    } catch (err) {
+      console.error("Send failed:", err);
+      alert("Send failed: " + (err?.message || err));
+    } finally {
+      sendBtn.disabled = false;
+    }
   });
 
   // ✅ Live comments list
   const q = query(collection(db, "comments"), orderBy("createdAt", "desc"));
 
-  onSnapshot(q, (snap) => {
-    listEl.innerHTML = "";
+  onSnapshot(
+    q,
+    (snap) => {
+      listEl.innerHTML = "";
 
-    snap.forEach((docSnap) => {
-      const c = docSnap.data();
+      snap.forEach((docSnap) => {
+        const c = docSnap.data();
 
-      const div = document.createElement("div");
-      div.className = "comment";
+        const div = document.createElement("div");
+        div.className = "comment";
 
-      // NAME (top)
-      const meta = document.createElement("div");
-      meta.className = "meta";
-      meta.textContent = c.guest ? `${c.name} • ${c.guest}` : c.name;
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = c.guest ? `${c.name} • ${c.guest}` : c.name;
 
-      // MESSAGE
-      const msg = document.createElement("div");
-      msg.className = "text";
-      msg.textContent = c.text;
+        const msg = document.createElement("div");
+        msg.className = "text";
+        msg.textContent = c.text;
 
-      // DATE & TIME (bottom)
-      const time = document.createElement("div");
-      time.className = "time";
+        const time = document.createElement("div");
+        time.className = "time";
+        if (c.createdAt?.toDate) {
+          time.textContent = c.createdAt.toDate().toLocaleString();
+        }
 
-      if (c.createdAt?.toDate) {
-        const d = c.createdAt.toDate();
-        time.textContent = d.toLocaleString(); // date + time
-      }
+        div.appendChild(meta);
+        div.appendChild(msg);
+        div.appendChild(time);
 
-      div.appendChild(meta);
-      div.appendChild(msg);
-      div.appendChild(time);
-
-      listEl.appendChild(div);
-    });
-  });
+        listEl.appendChild(div);
+      });
+    },
+    (err) => {
+      console.error("Snapshot error:", err);
+    }
+  );
 }
