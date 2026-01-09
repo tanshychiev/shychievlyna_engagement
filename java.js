@@ -349,6 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "img/love13.jpg",
       "img/love14.jpg",
       "img/love16.jpg",
+      "img/love115.jpg",
       "img/love18.jpg",
       "img/love17.jpg",
       "img/love22.jpg",
@@ -377,5 +378,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
