@@ -113,5 +113,3 @@ if (!nameEl || !textEl || !sendBtn || !listEl) {
     });
   });
 }
-#open-btn { pointer-events: auto !important; cursor: pointer !important; }
-#video-overlay { display: none; }
