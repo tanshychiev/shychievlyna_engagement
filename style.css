@@ -2670,7 +2670,7 @@ section {
   z-index: 0;
 }
 #MAP .map-cta {
-  bottom: 60px !important; /* ⬆️ increase to move UP */
+  bottom: 50px !important; /* ⬆️ increase to move UP */
 }
 /* ✅ MOVE GUEST NAME + OPEN BUTTON DOWN */
 #intro-overlay .intro-guest {
@@ -2687,6 +2687,7 @@ section {
   max-width: 60% !important;
   height: auto !important;
 }
+
 
 
 
