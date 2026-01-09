@@ -2678,15 +2678,16 @@ section {
 }
 
 #intro-overlay .intro-action {
-  bottom: 50px !important; /* increase = move DOWN, decrease = move UP */
+  bottom: 60px !important; /* increase = move DOWN, decrease = move UP */
 }
 /* ✅ Make "Click to Open" slightly smaller */
 /* 🔽 FORCE "CLICK TO OPEN" SMALLER */
 #open-btn {
-  width: 230px !important; /* clearly smaller */
+  width: 240px !important; /* clearly smaller */
   max-width: 60% !important;
   height: auto !important;
 }
+
 
 
 
