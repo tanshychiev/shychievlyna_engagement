@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!video) missing.push("intro-video");
 
   if (missing.length) {
-    console.error("❌ Missing HTML id:", missing.join(", "));
+    ole.error("❌ Missing HTML id:", missing.join(", "));
     alert("Missing HTML id: " + missing.join(", "));
     return;
   }
@@ -67,10 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // GUEST NAME FROM GOOGLE APPS SCRIPT (TYPE EFFECT)
   // =========================
   if (guestNameEl) {
-    const params = new URLSearchParams(window.location.search);
-    const code = (params.get("code") || "").trim();
+    t params = new URLSearchParams(window.location.search);
+    t code = (params.get("code") || "").trim();
 
-    const WEB_APP_URL =
+    t WEB_APP_URL =
       "https://script.google.com/macros/s/AKfycbzl3dl8Hw0TklP7FSCohYBquuaOd57U2gBYi6UujlwQ522nxe-Tv-uN_7HmtU1giWjbVQ/exec";
 
     function typeName(name) {
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
   video.addEventListener("error", finishIntro);
 
   function finishIntro() {
-    console.log("✅ finishIntro()");
+    ole.log("✅ finishIntro()");
     try {
       video.pause();
     } catch {}
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-  // FALLING ICONS ANIMATION
+  // FALLING I ANIMATION
   // =========================
   let fallTimer = null;
 
@@ -207,13 +207,13 @@ document.addEventListener("DOMContentLoaded", () => {
     flowersBox.innerHTML = "";
     if (fallTimer) clearInterval(fallTimer);
 
-    const ICONS = ["💠", "🫧", "❄️", "💙", "🔹", "✨", "💖", "💛", "🌟"];
-    const rand = (min, max) => Math.random() * (max - min) + min;
+    t I = ["💠", "🫧", "❄️", "💙", "🔹", "✨", "💖", "💛", "🌟"];
+    t rand = (min, max) => Math.random() * (max - min) + min;
 
     function spawnOne() {
-      const f = document.createElement("div");
+      t f = document.createElement("div");
       f.className = "flower";
-      f.textContent = ICONS[Math.floor(Math.random() * ICONS.length)];
+      f.textContent = I[Math.floor(Math.random() * I.length)];
 
       f.style.position = "absolute";
       f.style.left = rand(0, 100) + "%";
@@ -223,12 +223,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       flowersBox.appendChild(f);
 
-      const driftX = rand(-90, 90);
-      const fallDist = rand(900, 2400);
-      const dur = rand(7, 12) * 1000;
-      const delay = rand(0, 600);
+      t driftX = rand(-90, 90);
+      t fallDist = rand(900, 2400);
+      t dur = rand(7, 12) * 1000;
+      t delay = rand(0, 600);
 
-      const anim = f.animate(
+      t anim = f.animate(
         [
           { transform: "translate(0px, 0px)", opacity: 0 },
           { opacity: 1, offset: 0.12 },
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // GALLERY REVEAL (optional)
   // =========================
   function initGalleryReveal() {
-    const targets = document.querySelectorAll(
+    t targets = document.querySelectorAll(
       ".gallery-feature, .g-item, .polaroid"
     );
     if (!targets.length) return;
@@ -267,17 +267,17 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener(
       "scroll",
       () => {
-        const y = window.scrollY;
+        t y = window.scrollY;
         scrollDir = y > lastY ? "down" : "up";
         lastY = y;
       },
       { passive: true }
     );
 
-    const observer = new IntersectionObserver(
+    t observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const el = entry.target;
+          t el = entry.target;
           if (entry.isIntersecting) {
             el.classList.remove("from-bottom", "from-top");
             void el.offsetWidth;
@@ -294,16 +294,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // COUNTDOWN TIMER
   // =========================
-  const targetDate = new Date("2026-01-30T07:00:00").getTime();
-  const dEl = document.getElementById("cd-days");
-  const hEl = document.getElementById("cd-hours");
-  const mEl = document.getElementById("cd-mins");
-  const sEl = document.getElementById("cd-secs");
+  t targetDate = new Date("2026-01-30T07:00:00").getTime();
+  t dEl = document.getElementById("cd-days");
+  t hEl = document.getElementById("cd-hours");
+  t mEl = document.getElementById("cd-mins");
+  t sEl = document.getElementById("cd-secs");
 
   function updateCountdown() {
     if (!dEl || !hEl || !mEl || !sEl) return;
 
-    const diff = targetDate - Date.now();
+    t diff = targetDate - Date.now();
 
     if (diff <= 0) {
       dEl.textContent =
@@ -314,10 +314,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / (1000 * 60)) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
+    t days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    t hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    t mins = Math.floor((diff / (1000 * 60)) % 60);
+    t secs = Math.floor((diff / 1000) % 60);
 
     dEl.textContent = String(days).padStart(2, "0");
     hEl.textContent = String(hours).padStart(2, "0");
@@ -332,15 +332,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // POLAROID STACK GALLERY
   // =========================
   function initPolaroidGallery() {
-    const stack = document.getElementById("polaroidStack");
+    t stack = document.getElementById("polaroidStack");
     if (!stack) return;
 
-    const photos = [
-      "img/love 4.jpg",
+    t photos = [
+       "img/love26.jpg",
       "img/love 7.jpg",
-      "img/love 6.jpg",
-      "img/love1.jpg",
       "img/love2.jpg",
+      "img/love1.jpg",
+      "img/love 6.jpg",
       "img/love3.jpg",
       "img/love 5.jpg",
       "img/love 8.jpg",
@@ -352,10 +352,13 @@ document.addEventListener("DOMContentLoaded", () => {
       "img/love16.jpg",
       "img/love18.jpg",
       "img/love17.jpg",
+      "img/love22.jpg",
+      "img/love23.jpg",
+      "img/love27.jpg",
     ];
 
     let index = 0;
-    const imgs = stack.querySelectorAll("img");
+    t imgs = stack.querySelectorAll("img");
 
     function render() {
       imgs.forEach((img, i) => {
@@ -375,3 +378,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
