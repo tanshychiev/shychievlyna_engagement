@@ -349,12 +349,13 @@ document.addEventListener("DOMContentLoaded", () => {
       "img/love13.jpg",
       "img/love14.jpg",
       "img/love16.jpg",
-      "img/love115.jpg",
+      "img/love30.jpg",
       "img/love18.jpg",
       "img/love17.jpg",
       "img/love22.jpg",
       "img/love23.jpg",
-      "img/love27.jpg",
+      "img/love27.jpg"
+      ,
     ];
 
     let index = 0;
@@ -378,6 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
 
