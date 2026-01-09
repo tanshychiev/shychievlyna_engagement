@@ -2633,7 +2633,7 @@ section {
 ========================= */
 
 #MAP .map-cta {
-  bottom: 60px !important; /* ⬆️ increase to move UP */
+  bottom: 40px !important; /* ⬆️ increase to move UP */
 }
 /* =========================
 /* =========================
@@ -2669,4 +2669,5 @@ section {
 .bg-fixed {
   z-index: 0;
 }
+
 
