@@ -93,10 +93,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!code) {
       typeName(guestNameEl.textContent);
     } else {
-      fetch(`${WEB_APP_URL}?code=${encodeURIComponent(code)}`)
-        .then((res) => res.json())
-        .then((data) => typeName(data.name))
-        .catch(() => typeName("Honored Guest"));
+  fetch(WEB_APP_URL)
+  .then((res) => res.json())
+  .then((rows) => {
+    // rows is like: [{id:"A01", name:"Kaly & Yana"}, ...] OR a 2D array
+    if (Array.isArray(rows) && rows.length) {
+
+      // ✅ Case 1: Apps Script returns array of objects: [{id,name}, ...]
+      if (typeof rows[0] === "object" && rows[0].id) {
+        const found = rows.find((r) => String(r.id).trim() === code);
+        typeName(found ? found.name : "Honored Guest");
+        return;
+      }
+
+      // ✅ Case 2: Apps Script returns 2D array (full sheet): [[headers...],[A01,Name...],...]
+      if (Array.isArray(rows[0])) {
+        const body = rows.slice(1);
+        const foundRow = body.find((r) => String(r[0]).trim() === code);
+        typeName(foundRow ? rTrim(foundRow[1]) : "Honored Guest");
+        return;
+      }
+    }
+
+    typeName("Honored Guest");
+  })
+  .catch(() => typeName("Honored Guest"));
+
+function rTrim(v){ return String(v ?? "").trim(); }
     }
   }
 
@@ -379,6 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
 
