@@ -69,8 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (guestNameEl) {
     const params = new URLSearchParams(window.location.search);
     const code = (params.get("code") || "").trim();
-const WEB_APP_URL =
-  "https://script.google.com/macros/s/AKfycbxJKuBGQUFgHD-jfdtIlKpz5lRLeROzkKUht6-IxVrmMXoLkeax7AREXNSOjKvA-Dq7CQ/exec";
+
+    const WEB_APP_URL =
+      "https://script.google.com/macros/s/AKfycbxJKuBGQUFgHD-jfdtIlKpz5lRLeROzkKUht6-IxVrmMXoLkeax7AREXNSOjKvA-Dq7CQ/exec";
 
     function typeName(name) {
       name = (name || "").replace(/\+/g, " ").trim();
@@ -90,35 +91,25 @@ const WEB_APP_URL =
     }
 
     if (!code) {
-      typeName(guestNameEl.textContent);
+      typeName("Honored Guest");
     } else {
-  fetch(WEB_APP_URL)
-  .then((res) => res.json())
-  .then((rows) => {
-    // rows is like: [{id:"A01", name:"Kaly & Yana"}, ...] OR a 2D array
-    if (Array.isArray(rows) && rows.length) {
+      const apiUrl = `${WEB_APP_URL}?code=${encodeURIComponent(
+        code
+      )}&t=${Date.now()}`;
 
-      // ✅ Case 1: Apps Script returns array of objects: [{id,name}, ...]
-      if (typeof rows[0] === "object" && rows[0].id) {
-        const found = rows.find((r) => String(r.id).trim() === code);
-        typeName(found ? found.name : "Honored Guest");
-        return;
-      }
-
-      // ✅ Case 2: Apps Script returns 2D array (full sheet): [[headers...],[A01,Name...],...]
-      if (Array.isArray(rows[0])) {
-        const body = rows.slice(1);
-        const foundRow = body.find((r) => String(r[0]).trim() === code);
-        typeName(foundRow ? rTrim(foundRow[1]) : "Honored Guest");
-        return;
-      }
-    }
-
-    typeName("Honored Guest");
-  })
-  .catch(() => typeName("Honored Guest"));
-
-function rTrim(v){ return String(v ?? "").trim(); }
+      fetch(apiUrl, { cache: "no-store" })
+        .then((res) => {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then((data) => {
+          // expected: {code:"A01", name:"Kaly & Yana"}
+          typeName(data && data.name ? data.name : "Honored Guest");
+        })
+        .catch((err) => {
+          console.log("❌ guest fetch error:", err);
+          typeName("Honored Guest");
+        });
     }
   }
 
@@ -152,12 +143,9 @@ function rTrim(v){ return String(v ?? "").trim(); }
   video.muted = true; // important for mobile
   video.controls = false;
 
-  // If your video file has audio but you want ONLY video visuals:
-  // video.muted = true; (keep)
-  // music will play after video ends
-
   // =========================
   // INTRO -> PLAY VIDEO -> SHOW SITE
+  // =========================
   openBtn.addEventListener("click", () => {
     // hide intro
     intro.style.display = "none";
@@ -376,8 +364,7 @@ function rTrim(v){ return String(v ?? "").trim(); }
       "img/love17.jpg",
       "img/love22.jpg",
       "img/love23.jpg",
-      "img/love27.jpg"
-      ,
+      "img/love27.jpg",
     ];
 
     let index = 0;
@@ -401,9 +388,3 @@ function rTrim(v){ return String(v ?? "").trim(); }
     });
   }
 });
-
-
-
-
-
-
