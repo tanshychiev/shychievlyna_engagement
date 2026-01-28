@@ -69,9 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (guestNameEl) {
     const params = new URLSearchParams(window.location.search);
     const code = (params.get("code") || "").trim();
-
-    const WEB_APP_URL =
-      "https://script.google.com/macros/s/AKfycbzl3dl8Hw0TklP7FSCohYBquuaOd57U2gBYi6UujlwQ522nxe-Tv-uN_7HmtU1giWjbVQ/exec";
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbxJKuBGQUFgHD-jfdtIlKpz5lRLeROzkKUht6-IxVrmMXoLkeax7AREXNSOjKvA-Dq7CQ/exec";
 
     function typeName(name) {
       name = (name || "").replace(/\+/g, " ").trim();
@@ -402,6 +401,7 @@ function rTrim(v){ return String(v ?? "").trim(); }
     });
   }
 });
+
 
 
 
